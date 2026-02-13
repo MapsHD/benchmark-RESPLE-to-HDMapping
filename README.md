@@ -12,7 +12,7 @@ cd ~/hdmapping-benchmark/mandeye_to_bag
 ```
 
 
-File 'reg-1-ros2-lidar. is an input for further calculations.
+Folder 'reg-1-ros2-lidar' is an input for further calculations.
 It should be located in '~/hdmapping-benchmark/data'.
 
 ## Step 2 (prepare docker)
@@ -65,7 +65,7 @@ session.json
 trajectory_lio_*.csv
 
 ## Movie
-[[movie]]()
+[[movie]](https://youtu.be/5PAB4xJmMoo)
 
 ## Contact email
 januszbedkowski@gmail.com
