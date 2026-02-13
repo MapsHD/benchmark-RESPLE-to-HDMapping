@@ -6,8 +6,9 @@ ros1-to-hdmapping → hdmapping-to-ros1(name it reg-1-convert.bag) → rosbags-c
 
  Click [here](https://github.com/MapsHD/mandeye_to_bag) for tool and use these commands:
  ```shell
-./mandeye-convert.sh '~/hdmapping-benchmark/data/reg-1.bag' '~/hdmapping-benchmark/data/reg-1-convert' ros1-to-hdmapping
-./mandeye-convert.sh '~/hdmapping-benchmark/data/reg-1-convert' '~/hdmapping-benchmark/data/reg-1-convert.bag' hdmapping-to-ros1
+cd ~/hdmapping-benchmark/mandeye_to_bag
+./mandeye-convert.sh ~/hdmapping-benchmark/data/reg-1.bag ~/hdmapping-benchmark/data/reg-1-convert ros1-to-hdmapping
+./mandeye-convert.sh ~/hdmapping-benchmark/data/reg-1-convert ~/hdmapping-benchmark/data/reg-1-convert.bag hdmapping-to-ros1
 ```
 
 
