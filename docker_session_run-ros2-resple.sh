@@ -83,6 +83,7 @@ ros2 launch resple resple_ntu_day_01.launch.py
 source /opt/ros/humble/setup.bash
 source /ros2_ws/install/setup.bash
 
+rm -rf '"$BAG_OUTPUT_CONTAINER/$RECORDED_BAG_NAME"'  # ros2 bag record refuses an existing folder
 echo "[record] start"
 ros2 bag record /current_scan /odometry  \
   -o '"$BAG_OUTPUT_CONTAINER/$RECORDED_BAG_NAME"' --storage sqlite3

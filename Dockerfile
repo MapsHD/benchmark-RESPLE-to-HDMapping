@@ -35,7 +35,23 @@ WORKDIR /ros2_ws
 
 COPY ./src ./src
 
-RUN sed -i 's|topic_imu: /vn100/imu|topic_imu: /livox/imu|' src/RESPLE/resple/config/config_ntu_day_01.yaml
+# RESPLE's NTU config is reused for the Bunker DVI dataset (Livox Mid-360,
+# lidar-only mode). Adapt it to the sensor:
+#  - lidar_type HAP360: the bag's /livox/lidar is livox_ros_driver2/msg/CustomMsg,
+#    and only the HAP360 lidar type subscribes to that message. With Mid70Avia
+#    RESPLE subscribes to livox_ros_driver/msg/CustomMsg, never receives a scan
+#    and records an empty trajectory.
+#  - scan_line 4: the Mid-360 reports laser lines 0-3 and RESPLE keeps only
+#    points with line < scan_line, so 1 would discard three quarters of each scan.
+# The grep checks fail the build if the upstream config stops matching.
+RUN CFG=src/RESPLE/resple/config/config_ntu_day_01.yaml && \
+    sed -i \
+      -e 's|topic_imu: /vn100/imu|topic_imu: /livox/imu|' \
+      -e 's|lidar_type: Mid70Avia|lidar_type: HAP360|' \
+      -e 's|scan_line: 1$|scan_line: 4|' \
+      "$CFG" && \
+    grep -q 'lidar_type: HAP360' "$CFG" && \
+    grep -q 'scan_line: 4$' "$CFG"
 
 RUN source /opt/ros/humble/setup.bash && \
     colcon build --cmake-args -DCMAKE_POLICY_VERSION_MINIMUM=3.5
