@@ -27,7 +27,7 @@ Clone the repo
 ```shell
 mkdir -p /test_ws/src
 cd /test_ws/src
-git clone https://github.com/marcinmatecki/resple-to-hdmapping.git --recursive
+git clone https://github.com/MapsHD/benchmark-RESPLE-to-HDMapping.git --recursive
 cd ..
 colcon build
 ```
