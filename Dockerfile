@@ -53,6 +53,12 @@ RUN CFG=src/RESPLE/resple/config/config_ntu_day_01.yaml && \
     grep -q 'lidar_type: HAP360' "$CFG" && \
     grep -q 'scan_line: 4$' "$CFG"
 
+# Canonical-bag sensor profile (config + launch), kept out of the upstream RESPLE
+# submodule: its own config_eee02.yaml (Ouster) with only the sensor description
+# changed.
+COPY ./overlay/config/ ./src/RESPLE/resple/config/
+COPY ./overlay/launch/ ./src/RESPLE/resple/launch/
+
 RUN source /opt/ros/humble/setup.bash && \
     colcon build --cmake-args -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 

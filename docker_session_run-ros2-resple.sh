@@ -74,7 +74,7 @@ docker run -it --rm \
     tmux send-keys -t '"$TMUX_SESSION"' '\''sleep 5
 source /opt/ros/humble/setup.bash
 source /ros2_ws/install/setup.bash
-ros2 launch resple resple_ntu_day_01.launch.py
+ros2 launch resple resple_canonical.launch.py
 '\'' C-m
 
     # ---------- PANEL 2: rosbag record ----------
